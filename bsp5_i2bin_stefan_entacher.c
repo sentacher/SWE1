@@ -8,38 +8,41 @@
  ============================================================================
  */
 
+/*
+ ============================================================================
+ Name        : i2bin.c
+ Author      : Stefan Entacher
+ Version     :
+ Copyright   : 
+ Description : Dezimal to Bin
+ ============================================================================
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(void) {
+int main (void){
 
-	int dec1=0,dec2=0,hex[20],i=0,j=0;
+	int zahl1=0, zahl2=0, rest=0, faktor=1;
+	long int ergebnis=0;
 
-	//Werte einlesen
+	printf("Dieses Proramm liest eine Dezimalzahl ein und gibt die Binaerzahl aus.\n");
+	fflush(stdout);
 	printf("Bitte geben Sie eine Dezimalzahl ein: ");
 	fflush(stdout);
-	scanf("%d",&dec1);
+	scanf("%d",&zahl1);
 	fflush(stdin);
-	dec2=dec1;
 
-	//Dec2Hex
-	while(dec2>0){
-		hex[i]=dec2%16;
-		dec2=dec2/16;
-		i++;
-	}
+	zahl2=zahl1;
 
-	//Ausgabe
-	printf("Die Hexadezimalzahl von %d ist: ",dec1);
-	for(j=i-1;j>=0;j--){
-		if (hex[j]<10){
-			//Ausgabe 0-9
-			printf("%d",hex[j]);
-		}
-		else{
-			//Ausgabe A-F
-			printf("%c",hex[j]+55);
-		}
+	while (zahl2!=0){
+		rest=zahl2 %2;
+		zahl2 = zahl2 /2;
+
+		ergebnis=ergebnis+rest*faktor;
+		faktor=faktor*10;
 	}
+	printf("Die Binärzahl von %d lautet: %ld",zahl1,ergebnis);
 	return EXIT_SUCCESS;
+
 }
